@@ -29,12 +29,12 @@ class Laser(pg.sprite.Sprite):
 
         razdaljina_od_centra = parametri.DUZINA_ROBOTA / 2
         pozicija1 = copy.deepcopy(self.robot.pos)
-        if self.ofset_pozicije_lasera[1] != 0:
-            pozicija1[0] += self.ofset_pozicije_lasera[0]
-            pozicija1[0], pozicija1[1] = rotate(pozicija1[0], pozicija1[1],
-                                                self.robot.rect.center[0],
-                                                self.robot.rect.center[1],
-                                                -self.robot.rot * 3.14 / 180)
+        # if self.ofset_pozicije_lasera[1] != 0:
+        #     pozicija1[0] += self.ofset_pozicije_lasera[0]
+        #     pozicija1[0], pozicija1[1] = rotate(pozicija1[0], pozicija1[1],
+        #                                         self.robot.rect.center[0],
+        #                                         self.robot.rect.center[1],
+        #                                         -self.robot.rot * 3.14 / 180)
         pozicija2 = copy.deepcopy(self.robot.pos)
         pozicija2 += self.ofset_pozicije_lasera
         pozicija2[0], pozicija2[1] = rotate(pozicija2[0], pozicija2[1],
