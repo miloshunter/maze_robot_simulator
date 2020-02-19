@@ -13,7 +13,10 @@ class Lavirint():
         self.zidovi.append(Zid(simulacija, 200, 0, 10, 200))
         self.zidovi.append(Zid(simulacija, 500, 200, 500, 10))
         self.zidovi.append(Zid(simulacija, 0, 350, 350, 10))
-        self.zidovi.append(Zid(simulacija, 600, 380, 10, 500))
+        self.zidovi.append(Zid(simulacija, 320, 450, 10, 200))
+        self.zidovi.append(Zid(simulacija, 500, 200, 10, 100))
+        self.zidovi.append(Zid(simulacija, 500, 600, 10, 160))
+
 
 class Zid(pg.sprite.Sprite):
     def __init__(self, simulacija, x, y, width, height):

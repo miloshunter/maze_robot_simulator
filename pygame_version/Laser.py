@@ -8,7 +8,7 @@ vec = pg.math.Vector2
 
 
 class Laser(pg.sprite.Sprite):
-    def __init__(self, robot):
+    def __init__(self, robot, ofset_pozicije_lasera):
         pg.sprite.Sprite.__init__(self, robot.simulacija.svi_sprajtovi)
 
         ATOM_IMG = pg.Surface((parametri.SIRINA, parametri.VISINA), pg.SRCALPHA)
@@ -19,6 +19,8 @@ class Laser(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.merenje_lasera = parametri.DOMET_LASERA
 
+        self.ofset_pozicije_lasera = ofset_pozicije_lasera
+
     def update(self):
         def rotate(x, y, xo, yo, theta):  # rotate x,y around xo,yo by theta (rad)
             xr = math.cos(theta) * (x - xo) - math.sin(theta) * (y - yo) + xo
@@ -27,9 +29,14 @@ class Laser(pg.sprite.Sprite):
 
         razdaljina_od_centra = parametri.DUZINA_ROBOTA / 2
         pozicija1 = copy.deepcopy(self.robot.pos)
-
+        if self.ofset_pozicije_lasera[1] != 0:
+            pozicija1[0] += self.ofset_pozicije_lasera[0]
+            pozicija1[0], pozicija1[1] = rotate(pozicija1[0], pozicija1[1],
+                                                self.robot.rect.center[0],
+                                                self.robot.rect.center[1],
+                                                -self.robot.rot * 3.14 / 180)
         pozicija2 = copy.deepcopy(self.robot.pos)
-        pozicija2 += (parametri.DOMET_LASERA, 0)
+        pozicija2 += self.ofset_pozicije_lasera
         pozicija2[0], pozicija2[1] = rotate(pozicija2[0], pozicija2[1],
                                             self.robot.rect.center[0],
                                             self.robot.rect.center[1],
